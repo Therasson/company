@@ -1,0 +1,12 @@
+To DO
+- configuration vue JS
+- 
+
+DONE
+- installation laravel
+- installation vue js
+- installation breeze
+- deploeiement github
+---- Company
+    - creation du modele
+    - creation du controller

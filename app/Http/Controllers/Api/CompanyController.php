@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CompanyResource;
 
 class CompanyController extends Controller
 {
@@ -15,7 +16,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return CompanyResource::collection(Company::all());
     }
 
     /**
@@ -24,9 +25,11 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        $company = Company::create($request->validated());
+
+        return new CompanyResource($company);
     }
 
     /**
@@ -37,7 +40,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return new CompanyResource($company);
     }
 
     /**
@@ -47,9 +50,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
-        //
+        $company->update($request->validated());
+        return new CompanyResource($company);
     }
 
     /**
@@ -60,6 +64,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+
+        return response()->noContent();
     }
 }
