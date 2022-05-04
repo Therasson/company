@@ -26,8 +26,8 @@ class CompanyRequest extends FormRequest
         return [
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'address' => ['required'],
-            'website' => ['url'],
+            'address' => ['string'],
+            'webmail' => ['url'],
         ];
     }
 }

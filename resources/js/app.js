@@ -15,4 +15,4 @@ createApp({
     components: {
         CompaniesIndex
     }
-}).use(router).mount("#app")
+}).use(router).mount("#app");
